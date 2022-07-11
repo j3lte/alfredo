@@ -26,7 +26,7 @@ This is a Deno library, inspired by [Alfy](https://github.com/sindresorhus/alfy)
 Install the client:
 
 ```
-deno install --allow-read --allow-write --allow-env -f -n alfredo https://deno.land/x/alfredo/cli.ts
+deno install --allow-read --allow-write --allow-env -f --reload -n alfredo https://deno.land/x/alfredo/cli.ts
 ```
 
 You can use the client to scaffold a new Alfred Workflow
