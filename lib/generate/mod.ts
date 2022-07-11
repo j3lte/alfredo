@@ -1,5 +1,5 @@
 import { checkPermissions } from "../utils/permissions.ts";
-import { crStr, dirname, fromFileUrl, join } from "../../deps.ts";
+import { crStr, join } from "../../deps.ts";
 import { files } from "../assets.ts";
 
 const generateRandomString = () =>
@@ -27,7 +27,7 @@ export const generate = async (id?: string, folder = Deno.cwd()) => {
   } catch (_) {}
 
   try {
-    const __dirname = dirname(fromFileUrl(import.meta.url));
+    // const __dirname = dirname(fromFileUrl(import.meta.url));
     // const templateFile = join(__dirname, "../../assets/info.plist");
     // const template = await Deno.readTextFile(templateFile);
     const template = new TextDecoder().decode(files["info.plist"]);
