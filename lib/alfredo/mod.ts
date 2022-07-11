@@ -1,9 +1,4 @@
-import type {
-  AlfredEnv,
-  AlfredMeta,
-  ScriptItem,
-  ScriptOutput,
-} from "./typed.d.ts";
+import type { AlfredEnv, AlfredMeta, ScriptItem, ScriptOutput } from "./typed.d.ts";
 import { arch } from "../../deps.ts";
 // import { CacheConf } from "./cache/mod.ts";
 
@@ -49,7 +44,7 @@ export class Alfredo {
   output(
     items: ScriptItem[],
     variables?: { [key: string]: string },
-    interval?: number
+    interval?: number,
   ) {
     const data: ScriptOutput = {
       items,

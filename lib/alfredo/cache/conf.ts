@@ -1,8 +1,5 @@
 // deno-lint-ignore-file ban-types
-import {
-  dirname as pathDirname,
-  resolve as pathResolve,
-} from "../../../deps.ts";
+import { dirname as pathDirname, resolve as pathResolve } from "../../../deps.ts";
 import envPaths from "./env-paths.ts";
 const defaultSuffix = "deno";
 const plainObject = () => Object.create(null);
@@ -82,9 +79,7 @@ export default class Config {
     this.encryptionKey = this._options.encryptionKey;
     this.serialize = this._options.serialize;
     this.deserialize = this._options.deserialize;
-    const fileExtension = this._options.fileExtension
-      ? `.${this._options.fileExtension}`
-      : "";
+    const fileExtension = this._options.fileExtension ? `.${this._options.fileExtension}` : "";
     this.path = pathResolve(
       this._options.cwd,
       `${this._options.configName}${fileExtension}`,

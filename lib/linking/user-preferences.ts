@@ -48,8 +48,9 @@ export const getPreferences = async (): Promise<Preferences> => {
 
   try {
     const bplistFile = await Deno.readFile(settings3);
-    const { syncfolder = "~/Library/Application Support/Alfred 3" } =
-      parseBuffer(bplistFile) as { syncfolder?: string };
+    const { syncfolder = "~/Library/Application Support/Alfred 3" } = parseBuffer(bplistFile) as {
+      syncfolder?: string;
+    };
     const prefsPath = join(syncfolder, "Alfred.alfredpreferences");
 
     return {
@@ -58,8 +59,7 @@ export const getPreferences = async (): Promise<Preferences> => {
     };
   } catch (error) {
     if (error.code === "EACCES") {
-      errorMessage =
-        `Permission denied to read Alfred 3 preferences at location ${settings3}`;
+      errorMessage = `Permission denied to read Alfred 3 preferences at location ${settings3}`;
     }
   }
 
@@ -75,8 +75,7 @@ export const getPreferences = async (): Promise<Preferences> => {
     };
   } catch (error) {
     if (error.code === "EACCES") {
-      errorMessage =
-        `Permission denied to read Alfred preferences at location ${settings}`;
+      errorMessage = `Permission denied to read Alfred preferences at location ${settings}`;
     }
   }
 

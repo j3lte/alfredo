@@ -29,9 +29,7 @@ export class CacheConf extends Conf {
   ) {
     if (typeof key === "object") {
       opts = (val || {}) as { maxAge?: number };
-      const timestamp = typeof opts.maxAge === "number"
-        ? Date.now() + opts.maxAge
-        : undefined;
+      const timestamp = typeof opts.maxAge === "number" ? Date.now() + opts.maxAge : undefined;
       Object.keys(key).forEach((k) => {
         super.set(k, {
           timestamp,
@@ -41,9 +39,7 @@ export class CacheConf extends Conf {
       });
     } else {
       super.set(key, {
-        timestamp: typeof opts?.maxAge === "number"
-          ? Date.now() + opts.maxAge
-          : undefined,
+        timestamp: typeof opts?.maxAge === "number" ? Date.now() + opts.maxAge : undefined,
         version: this.version,
         data: val,
       });
