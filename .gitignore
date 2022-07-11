@@ -1,0 +1,7 @@
+.DS_Store
+build/
+dist/
+tmp/
+vendor/
+.vscode
+!.vscode/settings.json
