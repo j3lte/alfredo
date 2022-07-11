@@ -17,7 +17,7 @@ jobs:
         uses: denolib/setup-deno@master
 
       - name: Check Code FMT
-        run: deno fmt --check --ignore assets/*
+        run: deno fmt --check --ignore=assets/*
 
       - name: Check Code Lint
         run: deno lint
