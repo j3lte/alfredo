@@ -7,14 +7,19 @@
 
 ---
 
+[![tag](https://img.shields.io/github/tag/j3lte/alfredo.svg)](https://github.com/j3lte/alfredo)
+[![license](https://img.shields.io/github/license/j3lte/alfredo.svg)](https://github.com/j3lte/alfredo)
+[![tag](https://img.shields.io/badge/deno->=1.23.0-green.svg)](https://github.com/denoland/deno)
+[![tag](https://img.shields.io/badge/std-0.147.0-green.svg)](https://github.com/denoland/deno)
+
 This is a Deno library, inspired by [Alfy](https://github.com/sindresorhus/alfy)
 (a Node.JS library for running Alfred workflows).
 
----
-
 > ⚠️ This project is work in progress. Expect breaking changes.
 
----
+#### Quick links
+
+- [API Reference](https://doc.deno.land/https://deno.land/x/alfredo/mod.ts)
 
 ## Client
 

@@ -20,5 +20,3 @@ import dir from "https://deno.land/x/dir@1.4.0/mod.ts";
 export { dir };
 
 export { Command } from "https://deno.land/x/cliffy@v0.24.2/command/mod.ts";
-
-export const VERSION = "0.1.0";
