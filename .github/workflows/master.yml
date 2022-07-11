@@ -16,10 +16,20 @@ jobs:
       - name: Install Deno
         uses: denoland/setup-deno@v1
         with:
-          deno-version: "~1.7"
+          deno-version: "~1.23"
+
+      - name: Cache Deno dependencies
+        uses: actions/cache@main
+        env:
+          cache-name: cache-deno-dependencies
+        with:
+          path: ~/.cache/deno
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
 
       - name: Check Code FMT
-        run: deno fmt --check --ignore=assets/*
+        run: deno fmt --check
 
       - name: Check Code Lint
         run: deno lint
