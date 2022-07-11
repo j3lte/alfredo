@@ -1,0 +1,23 @@
+name: master
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  linting:
+    # Doesn't need to be checked in all OS
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Deno
+        uses: denolib/setup-deno@master
+
+      - name: Check Code FMT
+        run: deno fmt --check
+
+      - name: Check Code Lint
+        run: deno lint
