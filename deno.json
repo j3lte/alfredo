@@ -7,6 +7,11 @@
       "singleQuote": false,
       "useTabs": false,
       "proseWrap": "preserve"
+    },
+    "files": {
+      "exclude": [
+        "./lib/assets.ts"
+      ]
     }
   },
   "importMap": "import_map.json",

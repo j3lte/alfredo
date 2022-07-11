@@ -1,5 +1,6 @@
 import { checkPermissions } from "../utils/permissions.ts";
 import { crStr, dirname, fromFileUrl, join } from "../../deps.ts";
+import { files } from "../assets.ts";
 
 const generateRandomString = () =>
   [8, 4, 4, 4, 12]
@@ -27,8 +28,9 @@ export const generate = async (id?: string, folder = Deno.cwd()) => {
 
   try {
     const __dirname = dirname(fromFileUrl(import.meta.url));
-    const templateFile = join(__dirname, "../../assets/info.plist");
-    const template = await Deno.readTextFile(templateFile);
+    // const templateFile = join(__dirname, "../../assets/info.plist");
+    // const template = await Deno.readTextFile(templateFile);
+    const template = new TextDecoder().decode(files["info.plist"]);
 
     const randomUUID = generateRandomString();
     const identifier = id || "com.alfredo.task";
@@ -49,12 +51,14 @@ export const generate = async (id?: string, folder = Deno.cwd()) => {
 };
 
 export const copyFiles = async (folder = Deno.cwd()) => {
-  const __dirname = dirname(fromFileUrl(import.meta.url));
-  const [iconFile, runFile] = ["icon.png", "run.ts"].map((name) => ({
-    name,
-    path: join(__dirname, `../../assets/${name}`),
-  }));
+  // const __dirname = dirname(fromFileUrl(import.meta.url));
+  // const [iconFile, runFile] = ["icon.png", "run.ts"].map((name) => ({
+  //   name,
+  //   path: join(__dirname, `../../assets/${name}`),
+  // }));
 
-  await Deno.copyFile(iconFile.path, join(folder, iconFile.name));
-  await Deno.copyFile(runFile.path, join(folder, runFile.name));
+  // await Deno.copyFile(iconFile.path, join(folder, iconFile.name));
+  // await Deno.copyFile(runFile.path, join(folder, runFile.name));
+  await Deno.writeFile(join(folder, "icon.png"), files["icon.png"]);
+  await Deno.writeFile(join(folder, "run.ts"), files["run.ts"]);
 };
