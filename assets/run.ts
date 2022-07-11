@@ -1,1 +1,1 @@
-import { alfredo } from "https://deno.land/x/alfredo/mod.ts";
+import { alfredo } from "https://deno.land/x/alfredo<<VERSION>>/mod.ts";
