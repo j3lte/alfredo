@@ -1,5 +1,5 @@
 <p align="center">
-    <img align="center" src="assets/big_icon.png" />
+    <img align="center" src="https://github.com/j3lte/alfredo/raw/main/assets/big_icon.png" />
     <br>
     <h1 align="center"> Alfredo</h1>
     <p align="center">Run your <a href="https://www.alfredapp.com/">Alfred workflows</a> in Deno, based on Tauri</p>
