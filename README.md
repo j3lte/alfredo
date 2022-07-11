@@ -9,7 +9,7 @@
 
 [![tag](https://img.shields.io/github/tag/j3lte/alfredo.svg)](https://github.com/j3lte/alfredo)
 [![license](https://img.shields.io/github/license/j3lte/alfredo.svg)](https://github.com/j3lte/alfredo)
-[![main](https://github.com/j3lte/alfredo/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/j3lte/alfredo/actions/workflows/master.yml)
+[![main](https://github.com/j3lte/alfredo/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/j3lte/alfredo/actions/workflows/main.yml)
 [![tag](https://img.shields.io/badge/deno->=1.23.0-green.svg)](https://github.com/denoland/deno)
 [![tag](https://img.shields.io/badge/std-0.147.0-green.svg)](https://github.com/denoland/deno)
 
