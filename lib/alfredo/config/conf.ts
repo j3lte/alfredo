@@ -1,22 +1,20 @@
-// deno-lint-ignore-file ban-types
 import { dirname as pathDirname, resolve as pathResolve } from "../../../deps.ts";
-import envPaths from "./env-paths.ts";
-const defaultSuffix = "deno";
+
 const plainObject = () => Object.create(null);
-const _encryptionAlgorithm = "aes-256-cbc";
 const INTERNAL_KEY = "__internal__";
+
 export interface ConfigParameters {
-  projectName: string | null;
+  cwd: string;
   configName?: string;
   fileExtension?: string;
   projectSuffix?: string;
-  clearInvalidConfig?: boolean;
+  // deno-lint-ignore ban-types
   serialize?: Function;
+  // deno-lint-ignore ban-types
   deserialize?: Function;
   accessPropertiesByDotNotation?: boolean;
-  cwd?: string;
+  // deno-lint-ignore ban-types
   defaults?: {} | null;
-  encryptionKey?: string | null;
 }
 const checkValueType = (key: string, value: unknown) => {
   const nonJsonTypes = ["undefined", "symbol", "function"];
@@ -27,22 +25,20 @@ const checkValueType = (key: string, value: unknown) => {
     );
   }
 };
-export default class Config {
+export class Config {
   private _options: ConfigParameters = {
-    projectName: null,
+    cwd: "",
     configName: "config",
     fileExtension: "json",
-    projectSuffix: defaultSuffix,
-    clearInvalidConfig: true,
     serialize: (value: string) => JSON.stringify(value, null, "\t"),
     deserialize: JSON.parse,
     accessPropertiesByDotNotation: false,
     defaults: null,
-    encryptionKey: null,
   };
   defaultValues: Record<string, unknown> = {};
-  encryptionKey: ConfigParameters["encryptionKey"] = null;
+  // deno-lint-ignore ban-types
   serialize: Function;
+  // deno-lint-ignore ban-types
   deserialize: Function;
   path: string;
   constructor(options: ConfigParameters) {
@@ -52,14 +48,7 @@ export default class Config {
     };
     // Try to locate path's
     if (!this._options.cwd) {
-      if (!this._options.projectName) {
-        throw new Error(
-          "Project name could not be inferred. Please specify the `projectName` option.",
-        );
-      }
-      this._options.cwd = envPaths(this._options.projectName, {
-        suffix: this._options.projectSuffix || defaultSuffix,
-      }).config;
+      throw new Error("I need a working directory!");
     }
     // Did we provided default value for our configs?
     if (this._options.defaults) {
@@ -76,7 +65,6 @@ export default class Config {
         "Invalid serializer. Please specify the `deserialize` option.",
       );
     }
-    this.encryptionKey = this._options.encryptionKey;
     this.serialize = this._options.serialize;
     this.deserialize = this._options.deserialize;
     const fileExtension = this._options.fileExtension ? `.${this._options.fileExtension}` : "";

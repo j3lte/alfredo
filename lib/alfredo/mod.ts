@@ -1,8 +1,9 @@
-import { UserConfig } from "./config/mod.ts";
-export { alfredEnv as env } from "./env/mod.ts";
+import { getUserConfig } from "./config/mod.ts";
+import { getUserCache } from "./cache/mod.ts";
 export { icon } from "./icon/mod.ts";
 export { output } from "./output/mod.ts";
 export * from "./output/types.d.ts";
+export { alfredEnv as env } from "./env/mod.ts";
 
 /**
  * Stripped input (first argument coming from Alfred)
@@ -11,21 +12,22 @@ export const input: string = (Deno.args[0] || "").trim();
 
 /**
  * Log something to stderr, which shows up while debugging (but does not affect the UI)
- *
- * @param text Text to log
  */
-export const log = (text: string): void => {
-  console.error(text);
+export const log = (output: unknown): void => {
+  console.error(output);
 };
 
 /**
  * Get user config
  *
  * @param defaultConfig Default config
- * @param createIfNotFound Create the JSON config when not found in the data folder
- * @returns
  */
-export const userConfig = (
-  defaultConfig: { [key: string]: unknown } = {},
-  createIfNotFound = true,
-) => new UserConfig(createIfNotFound, defaultConfig);
+export const userConfig = (defaultConfig?: { [key: string]: unknown }) =>
+  getUserConfig(defaultConfig);
+
+/**
+ * Get user cache
+ *
+ * @param version Version
+ */
+export const userCache = (name: string, version?: string) => getUserCache(name, version);
