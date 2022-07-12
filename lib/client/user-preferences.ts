@@ -9,7 +9,7 @@ export interface Preferences {
   path?: string;
 }
 
-export const getPreferences = async (): Promise<Preferences> => {
+const getPreferences = async (): Promise<Preferences> => {
   let errorMessage = "";
 
   const userHome = getHome() || "";
@@ -44,7 +44,7 @@ export const getPreferences = async (): Promise<Preferences> => {
     errorMessage = `Alfred preferences not found at location ${prefsJsonPath}`;
   }
 
-  // PREFS PLIST
+  // PREFS PLIST Alfred 3
 
   try {
     const bplistFile = await Deno.readFile(settings3);
@@ -62,6 +62,8 @@ export const getPreferences = async (): Promise<Preferences> => {
       errorMessage = `Permission denied to read Alfred 3 preferences at location ${settings3}`;
     }
   }
+
+  // PREFS PLIST Alfred >3
 
   try {
     const bplistFile = await Deno.readFile(settings);
