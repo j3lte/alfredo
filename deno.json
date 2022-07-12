@@ -1,7 +1,8 @@
 {
   "tasks": {
     "assets": "deno run -A ./scripts/write_assets.ts",
-    "cache": "deno cache --lock=deps-lock.json --lock-write deps.ts"
+    "cache": "deno cache --lock=deps-lock.json --lock-write deps.ts",
+    "test": "deno test -A --fail-fast"
   },
   "fmt": {
     "options": {
