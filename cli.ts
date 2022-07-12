@@ -1,6 +1,6 @@
 import { Command, ensureDir, parse, resolve } from "./deps.ts";
-import { copyFiles, generate } from "./lib/generate/mod.ts";
-import { getTarget, link, unlink } from "./lib/linking/mod.ts";
+import { copyFiles, generate } from "./lib/client/generate.ts";
+import { getTarget, link, unlink } from "./lib/client/linking.ts";
 import { isDirEmpty } from "./lib/utils/file.ts";
 import { VERSION } from "./mod.ts";
 

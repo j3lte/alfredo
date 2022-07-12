@@ -20,7 +20,7 @@ export const generate = async (id?: string, folder = Deno.cwd()) => {
     const { isFile } = await Deno.stat(pListFilePath);
     if (isFile) {
       console.error(
-        `\nSorry, there is already a file: ${pListFilePath}\nAborting...\n`,
+        `\nSorry, there is already a file: ${pListFilePath}\nAborting...\n`
       );
       Deno.exit(1);
     }
@@ -28,9 +28,6 @@ export const generate = async (id?: string, folder = Deno.cwd()) => {
   } catch (_) {}
 
   try {
-    // const __dirname = dirname(fromFileUrl(import.meta.url));
-    // const templateFile = join(__dirname, "../../assets/info.plist");
-    // const template = await Deno.readTextFile(templateFile);
     const template = new TextDecoder().decode(files["info.plist"]);
 
     const randomUUID = generateRandomString();
@@ -46,20 +43,12 @@ export const generate = async (id?: string, folder = Deno.cwd()) => {
   } catch (error) {
     console.error(
       "Error when generating an Alfred workflow file :: ",
-      error.message,
+      error.message
     );
   }
 };
 
 export const copyFiles = async (folder = Deno.cwd()) => {
-  // const __dirname = dirname(fromFileUrl(import.meta.url));
-  // const [iconFile, runFile] = ["icon.png", "run.ts"].map((name) => ({
-  //   name,
-  //   path: join(__dirname, `../../assets/${name}`),
-  // }));
-
-  // await Deno.copyFile(iconFile.path, join(folder, iconFile.name));
-  // await Deno.copyFile(runFile.path, join(folder, runFile.name));
   await Deno.writeFile(join(folder, "icon.png"), files["icon.png"]);
 
   const updatedRunFile = new TextDecoder()
@@ -67,6 +56,6 @@ export const copyFiles = async (folder = Deno.cwd()) => {
     .replace("<<VERSION>>", `@${VERSION}`);
   await Deno.writeFile(
     join(folder, "run.ts"),
-    new TextEncoder().encode(updatedRunFile),
+    new TextEncoder().encode(updatedRunFile)
   );
 };

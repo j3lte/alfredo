@@ -4,6 +4,13 @@ interface Checks {
   write?: boolean;
 }
 
+/**
+ * Do a check for Deno params. This is for
+ *
+ * env: Environment (script should run with --allow-env)
+ * read: Read files (script should run with --allow-read)
+ * write: Write files (script should run with --allow-write)
+ */
 export const checkPermissions = async ({ env, read, write }: Checks = {}) => {
   const envCheck = typeof env === "undefined" ? true : env;
   const readCheck = typeof read === "undefined" ? true : read;
@@ -15,7 +22,7 @@ export const checkPermissions = async ({ env, read, write }: Checks = {}) => {
     });
     if (envStatus !== "granted") {
       console.log(
-        "You will need to run with env-permissions: '--allow-env' or '-A'",
+        "You will need to run with permissions: '--allow-env' or '-A'"
       );
       return false;
     }
@@ -27,7 +34,7 @@ export const checkPermissions = async ({ env, read, write }: Checks = {}) => {
     });
     if (readStatus !== "granted") {
       console.log(
-        "You will need to run with read-permissions: '--allow-read' or '-A'",
+        "You will need to run with permissions: '--allow-read' or '-A'"
       );
       return false;
     }
@@ -39,7 +46,7 @@ export const checkPermissions = async ({ env, read, write }: Checks = {}) => {
     });
     if (writeStatus !== "granted") {
       console.log(
-        "You will need to run with write-permissions: '--allow-write' or '-A'",
+        "You will need to run with permissions: '--allow-write' or '-A'"
       );
       return false;
     }
