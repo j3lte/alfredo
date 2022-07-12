@@ -2,11 +2,11 @@ import { Command, ensureDir, parse, resolve } from "./deps.ts";
 import { assets, generate } from "./lib/client/generate.ts";
 import { getTarget, link, unlink } from "./lib/client/linking.ts";
 import { isDirEmpty } from "./lib/utils/file.ts";
-import { VERSION } from "./mod.ts";
+import { _VERSION } from "./mod.ts";
 
 await new Command()
   .name("alfredo")
-  .version(VERSION)
+  .version(_VERSION)
   .description("Let's do Deno things in Alfred (https://www.alfredapp.com/)")
   .command("generate", "Generate a Alfred workflow")
   .option("-n, --dont-link", "Don't link the folder")
