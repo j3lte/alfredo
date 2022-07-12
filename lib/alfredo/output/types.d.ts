@@ -1,22 +1,3 @@
-export interface AlfredMeta {
-  name: string;
-  version: string;
-  uid: string;
-  bundleId: string;
-}
-
-export interface AlfredEnv {
-  version: string;
-  theme: string;
-  themeBackground: string;
-  themeSelectionBackground: string;
-  themeSubtext: number;
-  data: string;
-  cache: string;
-  preferences: string;
-  preferencesLocalHash: string;
-}
-
 export enum ScriptItemType {
   Default = "default",
   File = "file",
@@ -140,6 +121,8 @@ export interface ScriptItem {
   /**
    * **(optional)**
    *
+   * > Note: Be careful, you are passing these variables as an Environment variable to the next step
+   *
    * _From Alfred 3.4.1, individual item objects can also have variables which are passed out of the Script Filter object if the associated Result Item is selected in Alfred's results list. variables set within an item will override any JSON session variables of the same name._
    */
   variables?: {
@@ -148,12 +131,6 @@ export interface ScriptItem {
 }
 
 export interface ScriptOutput {
-  /**
-   * Optional variables
-   */
-  variables?: {
-    [key: string]: unknown;
-  };
   /**
    * Items
    */
