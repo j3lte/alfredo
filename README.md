@@ -55,6 +55,41 @@ $ alfredo --help
     unlink    [folder-name]          - Unlink the folder to the Alfred workflow folder
 ```
 
+### Generate
+
+Run the client:
+
+```
+alfredo generate <identifier> <optional:foldername>
+```
+
+Where:
+
+- `identifier` needs to be a unique identifier, something like
+  `com.alfredo.somethinguseful` (it's totally up to you)
+- `foldername` is optional. If you omit it, alfredo will try to scaffold one in
+  the current folder, otherwise it will create a folder with `foldername`
+
+### Link
+
+```
+alfredo link <optional:foldername>
+```
+
+This will try to link the folder to your Alfred workflow folder. Alfredo will
+try to determine this by checking for the workflow folder in your Alfred
+settings
+
+### Unlink
+
+```
+alfredo unlink <optional:foldername>
+```
+
+This will try to unlink the folder from your Alfred workflow folder. Note that
+it will fail if it can't find the folder, or determine the folder in your Alfred
+workflow folder to not be a symlink.
+
 ## Library
 
 > Coming soon

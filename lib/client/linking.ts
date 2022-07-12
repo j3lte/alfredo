@@ -13,7 +13,7 @@ export const getWorkFlowTarget = async (name: string) => {
  * @param name Folder path
  */
 export const getTarget = async (
-  name: string
+  name: string,
 ): Promise<{ target: string | null; symlink: boolean | null }> => {
   const targetDir = await getWorkFlowTarget(name);
   if (!targetDir) {

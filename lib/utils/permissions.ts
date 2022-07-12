@@ -8,7 +8,7 @@
 
 export const withPermissions = async (
   flags: Deno.PermissionName[] = [],
-  showLog = true
+  showLog = true,
 ) => {
   let hasPermissions = true;
 
@@ -21,11 +21,11 @@ export const withPermissions = async (
         hasPermissions = false;
         if (showLog) {
           console.error(
-            `I need permissions for ${name}. You will need to run with permissions: '--allow-${name}'`
+            `I need permissions for ${name}. You will need to run with permissions: '--allow-${name}'`,
           );
         }
       }
-    })
+    }),
   );
 
   return hasPermissions;
