@@ -1,5 +1,5 @@
 import { Command, ensureDir, parse, resolve } from "./deps.ts";
-import { copyFiles, generate } from "./lib/client/generate.ts";
+import { assets, generate } from "./lib/client/generate.ts";
 import { getTarget, link, unlink } from "./lib/client/linking.ts";
 import { isDirEmpty } from "./lib/utils/file.ts";
 import { VERSION } from "./mod.ts";
@@ -29,7 +29,7 @@ await new Command()
     await generate(id, toPath);
 
     if (!options.onlyWorkflow) {
-      await copyFiles(toPath);
+      await assets(toPath);
     }
 
     if (!options.dontLink) {

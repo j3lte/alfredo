@@ -73,7 +73,7 @@ export interface AlfredEnv {
   debug: boolean;
 }
 
-const getAlfredEnv = (key: string) => Deno.env.get(`alfred_${key}`);
+export const getAlfredEnv = (key: string) => Deno.env.get(`alfred_${key}`);
 
 export const alfredEnv: AlfredEnv = {
   workflowName: getAlfredEnv("workflow_name"),
