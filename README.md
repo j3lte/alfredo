@@ -2,7 +2,7 @@
     <img align="center" src="https://github.com/j3lte/alfredo/raw/main/.github/.assets/big_icon.png" />
     <br>
     <h1 align="center"> Alfredo</h1>
-    <p align="center">Run your <a href="https://www.alfredapp.com/">Alfred workflows</a> in Deno, based on <a href="https://deno.land/">Deno</a></p>
+    <p align="center">Run your <a href="https://www.alfredapp.com/">Alfred workflows</a> in <a href="https://deno.land/">Deno</a></p>
 </p>
 
 ---
