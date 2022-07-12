@@ -22,7 +22,7 @@ export const checkPermissions = async ({ env, read, write }: Checks = {}) => {
     });
     if (envStatus !== "granted") {
       console.log(
-        "You will need to run with permissions: '--allow-env' or '-A'"
+        "You will need to run with permissions: '--allow-env' or '-A'",
       );
       return false;
     }
@@ -34,7 +34,7 @@ export const checkPermissions = async ({ env, read, write }: Checks = {}) => {
     });
     if (readStatus !== "granted") {
       console.log(
-        "You will need to run with permissions: '--allow-read' or '-A'"
+        "You will need to run with permissions: '--allow-read' or '-A'",
       );
       return false;
     }
@@ -46,7 +46,7 @@ export const checkPermissions = async ({ env, read, write }: Checks = {}) => {
     });
     if (writeStatus !== "granted") {
       console.log(
-        "You will need to run with permissions: '--allow-write' or '-A'"
+        "You will need to run with permissions: '--allow-write' or '-A'",
       );
       return false;
     }

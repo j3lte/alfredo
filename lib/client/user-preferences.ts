@@ -15,16 +15,16 @@ const getPreferences = async (): Promise<Preferences> => {
   const userHome = getHome() || "";
   const settings3 = join(
     userHome,
-    "/Library/Preferences/com.runningwithcrayons.Alfred-Preferences-3.plist"
+    "/Library/Preferences/com.runningwithcrayons.Alfred-Preferences-3.plist",
   );
   const settings = join(
     userHome,
-    "/Library/Preferences/com.runningwithcrayons.Alfred-Preferences.plist"
+    "/Library/Preferences/com.runningwithcrayons.Alfred-Preferences.plist",
   );
 
   const prefsJsonPath = join(
     userHome,
-    "/Library/Application Support/Alfred/prefs.json"
+    "/Library/Application Support/Alfred/prefs.json",
   );
 
   // PREFS JSON
@@ -48,10 +48,9 @@ const getPreferences = async (): Promise<Preferences> => {
 
   try {
     const bplistFile = await Deno.readFile(settings3);
-    const { syncfolder = "~/Library/Application Support/Alfred 3" } =
-      parseBuffer(bplistFile) as {
-        syncfolder?: string;
-      };
+    const { syncfolder = "~/Library/Application Support/Alfred 3" } = parseBuffer(bplistFile) as {
+      syncfolder?: string;
+    };
     const prefsPath = join(syncfolder, "Alfred.alfredpreferences");
 
     return {
@@ -69,7 +68,7 @@ const getPreferences = async (): Promise<Preferences> => {
   try {
     const bplistFile = await Deno.readFile(settings);
     const { syncfolder = "~/Library/Application Support/Alfred" } = parseBuffer(
-      bplistFile
+      bplistFile,
     ) as { syncfolder?: string };
     const prefsPath = join(syncfolder, "Alfred.alfredpreferences");
 
