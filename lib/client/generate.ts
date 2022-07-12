@@ -1,6 +1,6 @@
 import { crStr, join } from "../../deps.ts";
 import { files } from "../assets.ts";
-import { VERSION } from "../../mod.ts";
+import { _VERSION } from "../../mod.ts";
 import { withPermissions } from "../utils/permissions.ts";
 
 const generateRandomString = () =>
@@ -53,7 +53,7 @@ export const assets = async (folder = Deno.cwd()) => {
 
   const updatedRunFile = new TextDecoder()
     .decode(files["run.ts"])
-    .replace("<<VERSION>>", `@${VERSION}`);
+    .replace("<<VERSION>>", `@${_VERSION}`);
   await Deno.writeFile(
     join(folder, "run.ts"),
     new TextEncoder().encode(updatedRunFile),

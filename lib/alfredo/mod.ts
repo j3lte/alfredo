@@ -7,14 +7,14 @@ export * from "./output/types.d.ts";
 /**
  * Stripped input (first argument coming from Alfred)
  */
-export const input = (Deno.args[0] || "").trim();
+export const input: string = (Deno.args[0] || "").trim();
 
 /**
  * Log something to stderr, which shows up while debugging (but does not affect the UI)
  *
  * @param text Text to log
  */
-export const log = (text: string) => {
+export const log = (text: string): void => {
   console.error(text);
 };
 
