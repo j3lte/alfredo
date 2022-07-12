@@ -9,7 +9,7 @@ export const getIcon = (name: string) =>
 /**
  * Default system icons
  */
-export const icon = {
+export const Icons = {
   /**
    * Get path to an icon in the system
    *

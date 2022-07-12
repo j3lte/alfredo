@@ -3,7 +3,7 @@ import { getPaths } from "../../utils/file.ts";
 import { alfredEnv } from "../env/mod.ts";
 import { Cache } from "./cache.ts";
 
-export const getUserCache = (name: string, version?: string) => {
+export const getUserCache = (name: string, version?: string): Cache => {
   const { workflowCache } = alfredEnv;
 
   if (workflowCache) {

@@ -1,8 +1,9 @@
 import { getUserConfig } from "./config/mod.ts";
 import { getUserCache } from "./cache/mod.ts";
-export { icon } from "./icon/mod.ts";
+import { Config } from "./config/conf.ts";
+import { Cache } from "./cache/cache.ts";
+export { Icons } from "./icon/mod.ts";
 export { output } from "./output/mod.ts";
-export * from "./output/types.d.ts";
 export { alfredEnv as env } from "./env/mod.ts";
 
 /**
@@ -22,12 +23,13 @@ export const log = (output: unknown): void => {
  *
  * @param defaultConfig Default config
  */
-export const userConfig = (defaultConfig?: { [key: string]: unknown }) =>
-  getUserConfig(defaultConfig);
+export const userConfig = (defaultConfig?: {
+  [key: string]: unknown;
+}): Config => getUserConfig(defaultConfig);
 
 /**
  * Get user cache
  *
  * @param version Version
  */
-export const userCache = (name: string, version?: string) => getUserCache(name, version);
+export const userCache = (name: string, version?: string): Cache => getUserCache(name, version);

@@ -9,7 +9,7 @@
 export const withPermissions = async (
   flags: Deno.PermissionName[] = [],
   showLog = true,
-) => {
+): Promise<boolean> => {
   let hasPermissions = true;
 
   await Promise.all(

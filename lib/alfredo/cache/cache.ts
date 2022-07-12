@@ -1,6 +1,6 @@
 import { Config, ConfigParameters } from "../config/conf.ts";
 
-interface CacheOptions extends ConfigParameters {
+export interface CacheOptions extends ConfigParameters {
   version?: string;
 }
 

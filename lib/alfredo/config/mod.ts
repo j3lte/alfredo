@@ -2,7 +2,9 @@ import { getPaths } from "../../utils/file.ts";
 import { alfredEnv } from "../env/mod.ts";
 import { Config } from "./conf.ts";
 
-export const getUserConfig = (defaultConfig?: { [key: string]: unknown }) => {
+export const getUserConfig = (defaultConfig?: {
+  [key: string]: unknown;
+}): Config => {
   const { workflowData } = alfredEnv;
 
   if (workflowData) {
