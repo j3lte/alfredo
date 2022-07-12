@@ -1,39 +1,69 @@
-import { join, dotprop } from "../../../deps.ts";
+import { ensureDir, getProperty, hasProperty, join, parse, setProperty } from "../../../deps.ts";
 import { alfredEnv } from "../env/mod.ts";
 
-const userConfigPath = alfredEnv.workflowData || Deno.cwd();
-const configFile = join(userConfigPath, "user-config.json");
+const userConfigPath = alfredEnv.workflowData;
+const configFile = userConfigPath ? join(userConfigPath, "user-config.json") : null;
 
-class AlfredoConfig {
+export class UserConfig {
   #store: { [key: string]: unknown } = {};
 
-  constructor() {
+  constructor(create = false, defaultConfig: { [key: string]: unknown } = {}) {
+    if (!configFile) {
+      console.error(
+        `It seems we don't have a path for our data! Have you set a Bundle ID for this workflow?`,
+      );
+      this.#store = defaultConfig;
+      return;
+    }
+
     try {
       const file = Deno.readTextFileSync(configFile);
       const config = JSON.parse(file) as { [key: string]: unknown };
+      const store = Object.assign(defaultConfig, config);
 
-      this.#store = config;
-      // deno-lint-ignore no-empty
-    } catch (error) {}
+      this.#store = store;
+    } catch (error) {
+      this.#store = defaultConfig;
+      if (error instanceof Deno.errors.NotFound) {
+        console.error(`Can't find the user config: ${configFile}`);
+        if (create) {
+          this.saveConfig();
+        }
+      } else {
+        console.error(`Error opening user config: `, error);
+      }
+    }
   }
 
-  saveConfig() {
+  async saveConfig() {
+    if (!configFile) {
+      console.error(
+        `It seems we don't have a path for our data! Have you set a Bundle ID for this workflow?`,
+      );
+      return;
+    }
     try {
+      const parsedPath = parse(configFile);
+      await ensureDir(parsedPath.dir);
       Deno.writeTextFileSync(
         configFile,
-        JSON.stringify(this.#store, null, "\t")
+        JSON.stringify(this.#store, null, "\t"),
       );
     } catch (error) {
       console.error(`Error trying to write the store!`, error);
     }
   }
 
-  get<T>(key: string, defaultValue: T) {
-    return dotprop.getProperty(this.#store, key, defaultValue);
+  get(key: string, defaultValue: unknown) {
+    return getProperty(this.#store, key, defaultValue);
+  }
+
+  set(key: string, value: unknown) {
+    return setProperty(this.#store, key, value);
   }
 
   has(key: string) {
-    return dotprop.hasProperty(this.#store, key);
+    return hasProperty(this.#store, key);
   }
 
   get size() {

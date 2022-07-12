@@ -20,7 +20,7 @@ export const generate = async (id?: string, folder = Deno.cwd()) => {
     const { isFile } = await Deno.stat(pListFilePath);
     if (isFile) {
       console.error(
-        `\nSorry, there is already a file: ${pListFilePath}\nAborting...\n`
+        `\nSorry, there is already a file: ${pListFilePath}\nAborting...\n`,
       );
       Deno.exit(1);
     }
@@ -43,16 +43,12 @@ export const generate = async (id?: string, folder = Deno.cwd()) => {
   } catch (error) {
     console.error(
       "Error when generating an Alfred workflow file :: ",
-      error.message
+      error.message,
     );
   }
 };
 
 export const assets = async (folder = Deno.cwd()) => {
-  await Deno.writeFile(
-    join(folder, "user-config.json"),
-    new TextEncoder().encode("{\n}")
-  );
   await Deno.writeFile(join(folder, "icon.png"), files["icon.png"]);
 
   const updatedRunFile = new TextDecoder()
@@ -60,6 +56,6 @@ export const assets = async (folder = Deno.cwd()) => {
     .replace("<<VERSION>>", `@${VERSION}`);
   await Deno.writeFile(
     join(folder, "run.ts"),
-    new TextEncoder().encode(updatedRunFile)
+    new TextEncoder().encode(updatedRunFile),
   );
 };
