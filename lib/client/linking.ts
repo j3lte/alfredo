@@ -1,5 +1,5 @@
 import { ensureSymlink, join } from "../../deps.ts";
-import { checkPermissions } from "../utils/permissions.ts";
+import { withPermissions } from "../utils/permissions.ts";
 import { getWorkFlowDir } from "./user-preferences.ts";
 
 export const getWorkFlowTarget = async (name: string) => {
@@ -13,7 +13,7 @@ export const getWorkFlowTarget = async (name: string) => {
  * @param name Folder path
  */
 export const getTarget = async (
-  name: string,
+  name: string
 ): Promise<{ target: string | null; symlink: boolean | null }> => {
   const targetDir = await getWorkFlowTarget(name);
   if (!targetDir) {
@@ -38,7 +38,8 @@ export const getTarget = async (
 };
 
 export const link = async (name: string, source = Deno.cwd()) => {
-  if (!(await checkPermissions())) {
+  // TODO: Check if we need all these permissions...
+  if (!(await withPermissions(["read", "write", "env"]))) {
     return;
   }
   const target = await getWorkFlowTarget(name);
@@ -49,7 +50,8 @@ export const link = async (name: string, source = Deno.cwd()) => {
 };
 
 export const unlink = async (name: string) => {
-  if (!(await checkPermissions())) {
+  // TODO: Check if we need all these permissions...
+  if (!(await withPermissions(["read", "write", "env"]))) {
     return;
   }
   const target = await getWorkFlowTarget(name);

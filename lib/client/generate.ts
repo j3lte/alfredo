@@ -1,7 +1,7 @@
-import { checkPermissions } from "../utils/permissions.ts";
 import { crStr, join } from "../../deps.ts";
 import { files } from "../assets.ts";
 import { VERSION } from "../../mod.ts";
+import { withPermissions } from "../utils/permissions.ts";
 
 const generateRandomString = () =>
   [8, 4, 4, 4, 12]
@@ -10,7 +10,7 @@ const generateRandomString = () =>
     .toUpperCase();
 
 export const generate = async (id?: string, folder = Deno.cwd()) => {
-  if (!(await checkPermissions({ env: false }))) {
+  if (!(await withPermissions(["read", "write"]))) {
     return;
   }
 
@@ -20,7 +20,7 @@ export const generate = async (id?: string, folder = Deno.cwd()) => {
     const { isFile } = await Deno.stat(pListFilePath);
     if (isFile) {
       console.error(
-        `\nSorry, there is already a file: ${pListFilePath}\nAborting...\n`,
+        `\nSorry, there is already a file: ${pListFilePath}\nAborting...\n`
       );
       Deno.exit(1);
     }
@@ -43,7 +43,7 @@ export const generate = async (id?: string, folder = Deno.cwd()) => {
   } catch (error) {
     console.error(
       "Error when generating an Alfred workflow file :: ",
-      error.message,
+      error.message
     );
   }
 };
@@ -56,6 +56,6 @@ export const copyFiles = async (folder = Deno.cwd()) => {
     .replace("<<VERSION>>", `@${VERSION}`);
   await Deno.writeFile(
     join(folder, "run.ts"),
-    new TextEncoder().encode(updatedRunFile),
+    new TextEncoder().encode(updatedRunFile)
   );
 };

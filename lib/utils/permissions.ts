@@ -1,56 +1,32 @@
-interface Checks {
-  env?: boolean;
-  read?: boolean;
-  write?: boolean;
-}
-
 /**
- * Do a check for Deno params. This is for
+ * Check permissions before running a script. This will return a boolean to see if all permissions have been `granted`.
  *
- * env: Environment (script should run with --allow-env)
- * read: Read files (script should run with --allow-read)
- * write: Write files (script should run with --allow-write)
+ * @param flags a list of one or more of the following flags: ```["run", "read", "write", "net", "env", "ffi", "hrtime"]```
+ * @param showLog Show an error in the console
+ * @returns
  */
-export const checkPermissions = async ({ env, read, write }: Checks = {}) => {
-  const envCheck = typeof env === "undefined" ? true : env;
-  const readCheck = typeof read === "undefined" ? true : read;
-  const writeCheck = typeof write === "undefined" ? true : write;
 
-  if (envCheck) {
-    const { state: envStatus } = await Deno.permissions.request({
-      name: "env",
-    });
-    if (envStatus !== "granted") {
-      console.log(
-        "You will need to run with permissions: '--allow-env' or '-A'",
-      );
-      return false;
-    }
-  }
+export const withPermissions = async (
+  flags: Deno.PermissionName[] = [],
+  showLog = true
+) => {
+  let hasPermissions = true;
 
-  if (readCheck) {
-    const { state: readStatus } = await Deno.permissions.request({
-      name: "read",
-    });
-    if (readStatus !== "granted") {
-      console.log(
-        "You will need to run with permissions: '--allow-read' or '-A'",
-      );
-      return false;
-    }
-  }
+  await Promise.all(
+    flags.map(async (name) => {
+      const { state } = await Deno.permissions.request({
+        name,
+      });
+      if (state !== "granted") {
+        hasPermissions = false;
+        if (showLog) {
+          console.error(
+            `I need permissions for ${name}. You will need to run with permissions: '--allow-${name}'`
+          );
+        }
+      }
+    })
+  );
 
-  if (writeCheck) {
-    const { state: writeStatus } = await Deno.permissions.request({
-      name: "write",
-    });
-    if (writeStatus !== "granted") {
-      console.log(
-        "You will need to run with permissions: '--allow-write' or '-A'",
-      );
-      return false;
-    }
-  }
-
-  return true;
+  return hasPermissions;
 };
