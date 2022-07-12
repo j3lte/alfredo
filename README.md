@@ -1,11 +1,10 @@
 <p align="center">
     <img align="center" src="https://github.com/j3lte/alfredo/raw/main/.github/.assets/big_icon.png" />
-    <br>
+    <br />
     <h1 align="center"> Alfredo</h1>
     <p align="center">Run your <a href="https://www.alfredapp.com/">Alfred workflows</a> in <a href="https://deno.land/">Deno</a></p>
 </p>
-
----
+<br />
 
 [![tag](https://img.shields.io/github/tag/j3lte/alfredo.svg)](https://github.com/j3lte/alfredo)
 [![license](https://img.shields.io/github/license/j3lte/alfredo.svg)](https://github.com/j3lte/alfredo)
