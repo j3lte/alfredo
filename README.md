@@ -97,10 +97,10 @@ with the following settings:
 ```sh
 if [ -f "/opt/homebrew/bin/deno" ]
 then
-  /opt/homebrew/bin/deno run -A run.ts "$1"
+  /opt/homebrew/bin/deno run -A run.ts $@
 elif [ -f "$HOME/.deno/bin/deno"]
 then
-  "$HOME/.deno/bin/deno" run -A run.ts "$1"
+  "$HOME/.deno/bin/deno" run -A run.ts $@
 fi
 ```
 
