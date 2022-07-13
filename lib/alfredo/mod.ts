@@ -4,6 +4,7 @@ import { Config } from "./config/conf.ts";
 import { Cache } from "./cache/cache.ts";
 export { Icons } from "./icon/mod.ts";
 export { output } from "./output/mod.ts";
+export { showNotification } from "./notification/mod.ts";
 export { alfredEnv as env } from "./env/mod.ts";
 
 /**
