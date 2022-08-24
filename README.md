@@ -94,12 +94,13 @@ with the following settings:
 - Script:
 
 ```sh
+#!/bin/sh
 if [ -f "/opt/homebrew/bin/deno" ]
 then
-  /opt/homebrew/bin/deno run -A run.ts $@
-elif [ -f "$HOME/.deno/bin/deno"]
+  /opt/homebrew/bin/deno run -A run.ts "$@"
+elif [ -f "$HOME/.deno/bin/deno" ]
 then
-  "$HOME/.deno/bin/deno" run -A run.ts $@
+  "$HOME/.deno/bin/deno" run -A run.ts "$@"
 fi
 ```
 
