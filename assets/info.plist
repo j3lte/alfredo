@@ -44,12 +44,13 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>if [ -f "/opt/homebrew/bin/deno" ]
+				<string>#!/bin/sh
+if [ -f "/opt/homebrew/bin/deno" ]
 then
-  /opt/homebrew/bin/deno run -A run.ts $@
-elif [ -f "$HOME/.deno/bin/deno"]
+  /opt/homebrew/bin/deno run -A run.ts "$@"
+elif [ -f "$HOME/.deno/bin/deno" ]
 then
-  "$HOME/.deno/bin/deno" run -A run.ts $@
+  "$HOME/.deno/bin/deno" run -A run.ts "$@"
 fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
